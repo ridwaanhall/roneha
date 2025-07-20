@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-from decouple import config
+from decouple import config, Csv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,15 +26,10 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-import ast
-# Support both list and comma-separated string for ALLOWED_HOSTS
-allowed_hosts_raw = config('ALLOWED_HOSTS', default='["*.vercel.app", "*.roneha.dev"]')
-try:
-    ALLOWED_HOSTS = ast.literal_eval(allowed_hosts_raw)
-    if not isinstance(ALLOWED_HOSTS, list):
-        raise ValueError
-except Exception:
-    ALLOWED_HOSTS = [h.strip() for h in allowed_hosts_raw.split(',') if h.strip()]
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv()) if DEBUG else [
+    '.vercel.app',
+    '.roneha.dev',
+]
 
 
 # Application definition
