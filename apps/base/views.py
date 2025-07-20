@@ -19,15 +19,19 @@ class RonehaView(View):
         timezone_str = str(settings.TIME_ZONE)
         elapsed_ms = None
 
+        ip = self._get_client_ip(request)
+
         data = {
             "message": "Welcome to roneha.dev. Your request was successful.",
             "version": "1.0.1",
-            "main_url": "https://ridwaanhall.com"
+            "main_url": "https://ridwaanhall.com",
+            "github_url": "https://gh.ridwaanhall.com"
         }
 
         meta = {
             "code": 200,
-            "request_id": request_id
+            "request_id": request_id,
+            "ip": ip
         }
 
         response = self._build_response(
@@ -51,6 +55,16 @@ class RonehaView(View):
     def _get_request_id(request):
         """Extract or generate a request ID."""
         return request.META.get("HTTP_X_REQUEST_ID") or str(uuid.uuid4())
+
+    @staticmethod
+    def _get_client_ip(request):
+        """Extract the client's IP address from the request."""
+        x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(",")[0].strip()
+        else:
+            ip = request.META.get("REMOTE_ADDR")
+        return ip
 
     @staticmethod
     def _build_response(**kwargs):
