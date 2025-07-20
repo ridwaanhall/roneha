@@ -28,7 +28,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 import ast
 # Support both list and comma-separated string for ALLOWED_HOSTS
-allowed_hosts_raw = config('ALLOWED_HOSTS', default='[]')
+allowed_hosts_raw = config('ALLOWED_HOSTS', default='["*.vercel.app", "*.roneha.dev"]')
 try:
     ALLOWED_HOSTS = ast.literal_eval(allowed_hosts_raw)
     if not isinstance(ALLOWED_HOSTS, list):
