@@ -7,7 +7,7 @@ from django.views import View
 from django.utils import timezone
 from django.conf import settings
 
-class HelloView(View):
+class RonehaView(View):
     """A simple view that returns a standardized JSON response."""
 
     def get(self, request, *args, **kwargs):

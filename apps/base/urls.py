@@ -1,7 +1,7 @@
 """URL patterns for base app."""
 from django.urls import path
-from .views import HelloView
+from .views import RonehaView
 
 urlpatterns = [
-    path('', HelloView.as_view(), name='hello'),
+    path('', RonehaView.as_view(), name='roneha'),
 ]
