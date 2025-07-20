@@ -1,3 +1,2 @@
-from django.db import models
-
-# Create your models here.
+"""Models for base app."""
+# No models defined yet.
