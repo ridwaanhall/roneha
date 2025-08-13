@@ -21,7 +21,7 @@ class RonehaView(View):
 
         data = {
             "message": "Welcome to roneha.dev. Your request was successful.",
-            "version": "1.0.1",
+            "version": settings.VERSION,
             "main_url": "https://ridwaanhall.com",
             "github_url": "https://gh.ridwaanhall.com"
         }
