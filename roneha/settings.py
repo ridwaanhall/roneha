@@ -31,6 +31,8 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv()) if DEBUG else [
     '.roneha.dev',
 ]
 
+VERSION = config('VERSION', default='1.0.2')
+
 
 # Application definition
 
